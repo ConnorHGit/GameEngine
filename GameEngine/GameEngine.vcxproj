@@ -30,15 +30,11 @@
     <ClInclude Include="DevIL\ilut_config.h" />
     <ClInclude Include="DevIL\ilu_region.h" />
     <ClInclude Include="DevIL\il_wrap.h" />
-    <ClInclude Include="Main.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="DevIL\DevIL.lib" />
-    <Library Include="DevIL\ILU.lib" />
-    <Library Include="DevIL\ILUT.lib" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A1697022-4581-42D9-8B71-F80176045180}</ProjectGuid>
@@ -99,6 +95,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ucrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

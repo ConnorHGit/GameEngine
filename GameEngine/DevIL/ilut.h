@@ -125,50 +125,51 @@
 */
 
 #if (defined(_WIN32) || defined(_WIN64))
-	#if (defined(IL_USE_PRAGMA_LIBS)) && (!defined(_IL_BUILD_LIBRARY))
-		#if defined(_MSC_VER) || defined(__BORLANDC__)
+#if (defined(IL_USE_PRAGMA_LIBS)) && (!defined(_IL_BUILD_LIBRARY))
+#if defined(_MSC_VER) || defined(__BORLANDC__)
 			#pragma comment(lib, "ILUT.lib")
-		#endif
-	#endif
-
-	#include "ilut_config.h"
+#endif
 #endif
 
+#include "ilut_config.h"
+#endif
 
 
 //this should remain private and hidden
 //#include "IL/config.h" 
- 
+
 //////////////
 // OpenGL
 //////////////
 
 #ifdef ILUT_USE_OPENGL
-	#if defined(_MSC_VER) || defined(_WIN32)
-		//#define WIN32_LEAN_AND_MEAN
-		#include <windows.h>
-	#endif//_MSC_VER
- 
-	#ifdef __APPLE__
+#if defined(_MSC_VER) || defined(_WIN32)
+//#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif//_MSC_VER
+
+
+#ifdef __APPLE__
 		#include <OpenGL/gl.h>
 		#include <OpenGL/glu.h>
-	#else
-	 	#include <GL/gl.h>
- 		#include <GL/glu.h>
-	#endif//__APPLE__
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif//__APPLE__
+
 #endif
 
 
 #ifdef ILUT_USE_WIN32
-	//#define WIN32_LEAN_AND_MEAN
-	#ifdef _DEBUG 
-		#define _CRTDBG_MAP_ALLOC
-		#include <stdlib.h>
-		#ifndef _WIN32_WCE
-			#include <crtdbg.h>
-		#endif
-	#endif
-	#include <windows.h>
+//#define WIN32_LEAN_AND_MEAN
+#ifdef _DEBUG 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#ifndef _WIN32_WCE
+#include <crtdbg.h>
+#endif
+#endif
+#include <windows.h>
 #endif
 
 
@@ -184,6 +185,7 @@
 //	#include <allegro.h>
 #endif//ILUT_USE_ALLEGRO
 
+
 #ifdef ILUT_USE_SDL
 //	#include <SDL.h>
 #endif
@@ -192,9 +194,11 @@
 	#include <d3d8.h>
 #endif//ILUT_USE_DIRECTX9
 
+
 #ifdef ILUT_USE_DIRECTX9
 	#include <d3d9.h>
 #endif//ILUT_USE_DIRECTX9
+
 
 #ifdef ILUT_USE_DIRECTX10
 	#pragma warning(push)
@@ -205,6 +209,7 @@
 	#pragma warning(pop)
 #endif//ILUT_USE_DIRECTX10
 
+
 #ifdef ILUT_USE_X11
 	#include <X11/Xlib.h>
 	#include <X11/Xutil.h>
@@ -213,6 +218,7 @@
 	#include <sys/shm.h>
 	#include <X11/extensions/XShm.h>
 #endif//ILUT_USE_XSHM
+
 #endif//ILUT_USE_X11
 
 
@@ -222,64 +228,67 @@
 //-----------------------------------------------------------------------------
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-// ImageLib Utility Toolkit Functions
-ILAPI ILboolean		ILAPIENTRY ilutDisable(ILenum Mode);
-ILAPI ILboolean		ILAPIENTRY ilutEnable(ILenum Mode);
-ILAPI ILboolean		ILAPIENTRY ilutGetBoolean(ILenum Mode);
-ILAPI void          ILAPIENTRY ilutGetBooleanv(ILenum Mode, ILboolean *Param);
-ILAPI ILint			ILAPIENTRY ilutGetInteger(ILenum Mode);
-ILAPI void          ILAPIENTRY ilutGetIntegerv(ILenum Mode, ILint *Param);
-ILAPI ILstring      ILAPIENTRY ilutGetString(ILenum StringName);
-ILAPI void          ILAPIENTRY ilutInit(void);
-ILAPI ILboolean     ILAPIENTRY ilutIsDisabled(ILenum Mode);
-ILAPI ILboolean     ILAPIENTRY ilutIsEnabled(ILenum Mode);
-ILAPI void          ILAPIENTRY ilutPopAttrib(void);
-ILAPI void          ILAPIENTRY ilutPushAttrib(ILuint Bits);
-ILAPI void          ILAPIENTRY ilutSetInteger(ILenum Mode, ILint Param);
+	// ImageLib Utility Toolkit Functions
+	ILAPI ILboolean ILAPIENTRY ilutDisable(ILenum Mode);
+	ILAPI ILboolean ILAPIENTRY ilutEnable(ILenum Mode);
+	ILAPI ILboolean ILAPIENTRY ilutGetBoolean(ILenum Mode);
+	ILAPI void ILAPIENTRY ilutGetBooleanv(ILenum Mode, ILboolean* Param);
+	ILAPI ILint ILAPIENTRY ilutGetInteger(ILenum Mode);
+	ILAPI void ILAPIENTRY ilutGetIntegerv(ILenum Mode, ILint* Param);
+	ILAPI ILstring ILAPIENTRY ilutGetString(ILenum StringName);
+	ILAPI void ILAPIENTRY ilutInit(void);
+	ILAPI ILboolean ILAPIENTRY ilutIsDisabled(ILenum Mode);
+	ILAPI ILboolean ILAPIENTRY ilutIsEnabled(ILenum Mode);
+	ILAPI void ILAPIENTRY ilutPopAttrib(void);
+	ILAPI void ILAPIENTRY ilutPushAttrib(ILuint Bits);
+	ILAPI void ILAPIENTRY ilutSetInteger(ILenum Mode, ILint Param);
 
-ILAPI ILboolean     ILAPIENTRY ilutRenderer(ILenum Renderer);
+	ILAPI ILboolean ILAPIENTRY ilutRenderer(ILenum Renderer);
 
 
-// ImageLib Utility Toolkit's OpenGL Functions
+	// ImageLib Utility Toolkit's OpenGL Functions
 #ifdef ILUT_USE_OPENGL
-	ILAPI GLuint	ILAPIENTRY ilutGLBindTexImage();
-	ILAPI GLuint	ILAPIENTRY ilutGLBindMipmaps(void);
-	ILAPI ILboolean	ILAPIENTRY ilutGLBuildMipmaps(void);
-	ILAPI GLuint	ILAPIENTRY ilutGLLoadImage(ILstring FileName);
-	ILAPI ILboolean	ILAPIENTRY ilutGLScreen(void);
-	ILAPI ILboolean	ILAPIENTRY ilutGLScreenie(void);
-	ILAPI ILboolean	ILAPIENTRY ilutGLSaveImage(ILstring FileName, GLuint TexID);
+	ILAPI GLuint ILAPIENTRY ilutGLBindTexImage();
+	ILAPI GLuint ILAPIENTRY ilutGLBindMipmaps(void);
+	ILAPI ILboolean ILAPIENTRY ilutGLBuildMipmaps(void);
+	ILAPI GLuint ILAPIENTRY ilutGLLoadImage(ILstring FileName);
+	ILAPI ILboolean ILAPIENTRY ilutGLScreen(void);
+	ILAPI ILboolean ILAPIENTRY ilutGLScreenie(void);
+	ILAPI ILboolean ILAPIENTRY ilutGLSaveImage(ILstring FileName, GLuint TexID);
 	ILAPI ILboolean ILAPIENTRY ilutGLSubTex2D(GLuint TexID, ILuint XOff, ILuint YOff);
 	ILAPI ILboolean ILAPIENTRY ilutGLSubTex3D(GLuint TexID, ILuint XOff, ILuint YOff, ILuint ZOff);
-	ILAPI ILboolean	ILAPIENTRY ilutGLSetTex2D(GLuint TexID);
-	ILAPI ILboolean	ILAPIENTRY ilutGLSetTex3D(GLuint TexID);
-	ILAPI ILboolean	ILAPIENTRY ilutGLTexImage(GLuint Level);
+	ILAPI ILboolean ILAPIENTRY ilutGLSetTex2D(GLuint TexID);
+	ILAPI ILboolean ILAPIENTRY ilutGLSetTex3D(GLuint TexID);
+	ILAPI ILboolean ILAPIENTRY ilutGLTexImage(GLuint Level);
 	ILAPI ILboolean ILAPIENTRY ilutGLSubTex(GLuint TexID, ILuint XOff, ILuint YOff);
 
-	ILAPI ILboolean	ILAPIENTRY ilutGLSetTex(GLuint TexID);  // Deprecated - use ilutGLSetTex2D.
-	ILAPI ILboolean ILAPIENTRY ilutGLSubTex(GLuint TexID, ILuint XOff, ILuint YOff);  // Use ilutGLSubTex2D.
+	ILAPI ILboolean ILAPIENTRY ilutGLSetTex(GLuint TexID); // Deprecated - use ilutGLSetTex2D.
+	ILAPI ILboolean ILAPIENTRY ilutGLSubTex(GLuint TexID, ILuint XOff, ILuint YOff); // Use ilutGLSubTex2D.
 #endif//ILUT_USE_OPENGL
 
 
-// ImageLib Utility Toolkit's Allegro Functions
+
+	// ImageLib Utility Toolkit's Allegro Functions
 #ifdef ILUT_USE_ALLEGRO
-	#ifdef __cplusplus
+#ifdef __cplusplus
 	extern "C" {
-	#endif
+#endif
 		#include <allegro.h>
-	#ifdef __cplusplus
+#ifdef __cplusplus
 	}
-	#endif
+#endif
 
 	ILAPI BITMAP* ILAPIENTRY ilutAllegLoadImage(ILstring FileName);
 	ILAPI BITMAP* ILAPIENTRY ilutConvertToAlleg(PALETTE Pal);
 #endif//ILUT_USE_ALLEGRO
 
 
-// ImageLib Utility Toolkit's SDL Functions
+
+	// ImageLib Utility Toolkit's SDL Functions
 #ifdef ILUT_USE_SDL
 	ILAPI struct SDL_Surface* ILAPIENTRY ilutConvertToSDLSurface(unsigned int flags);
 	ILAPI struct SDL_Surface* ILAPIENTRY ilutSDLSurfaceLoadImage(ILstring FileName);
@@ -287,34 +296,37 @@ ILAPI ILboolean     ILAPIENTRY ilutRenderer(ILenum Renderer);
 #endif//ILUT_USE_SDL
 
 
-// ImageLib Utility Toolkit's BeOS Functions
-#ifdef  ILUT_USE_BEOS
+
+	// ImageLib Utility Toolkit's BeOS Functions
+#ifdef ILUT_USE_BEOS
 	ILAPI BBitmap ILAPIENTRY ilutConvertToBBitmap(void);
 #endif//ILUT_USE_BEOS
 
 
-// ImageLib Utility Toolkit's Win32 GDI Functions
+
+	// ImageLib Utility Toolkit's Win32 GDI Functions
 #ifdef ILUT_USE_WIN32
-	ILAPI HBITMAP	ILAPIENTRY ilutConvertToHBitmap(HDC hDC);
-	ILAPI HBITMAP	ILAPIENTRY ilutConvertSliceToHBitmap(HDC hDC, ILuint slice);
-	ILAPI void	ILAPIENTRY ilutFreePaddedData(ILubyte *Data);
-	ILAPI void	ILAPIENTRY ilutGetBmpInfo(BITMAPINFO *Info);
-	ILAPI HPALETTE	ILAPIENTRY ilutGetHPal(void);
-	ILAPI ILubyte*	ILAPIENTRY ilutGetPaddedData(void);
-	ILAPI ILboolean	ILAPIENTRY ilutGetWinClipboard(void);
-	ILAPI ILboolean	ILAPIENTRY ilutLoadResource(HINSTANCE hInst, ILint ID, ILstring ResourceType, ILenum Type);
-	ILAPI ILboolean	ILAPIENTRY ilutSetHBitmap(HBITMAP Bitmap);
-	ILAPI ILboolean	ILAPIENTRY ilutSetHPal(HPALETTE Pal);
-	ILAPI ILboolean	ILAPIENTRY ilutSetWinClipboard(void);
-	ILAPI HBITMAP	ILAPIENTRY ilutWinLoadImage(ILstring FileName, HDC hDC);
-	ILAPI ILboolean	ILAPIENTRY ilutWinLoadUrl(ILstring Url);
+	ILAPI HBITMAP ILAPIENTRY ilutConvertToHBitmap(HDC hDC);
+	ILAPI HBITMAP ILAPIENTRY ilutConvertSliceToHBitmap(HDC hDC, ILuint slice);
+	ILAPI void ILAPIENTRY ilutFreePaddedData(ILubyte* Data);
+	ILAPI void ILAPIENTRY ilutGetBmpInfo(BITMAPINFO* Info);
+	ILAPI HPALETTE ILAPIENTRY ilutGetHPal(void);
+	ILAPI ILubyte* ILAPIENTRY ilutGetPaddedData(void);
+	ILAPI ILboolean ILAPIENTRY ilutGetWinClipboard(void);
+	ILAPI ILboolean ILAPIENTRY ilutLoadResource(HINSTANCE hInst, ILint ID, ILstring ResourceType, ILenum Type);
+	ILAPI ILboolean ILAPIENTRY ilutSetHBitmap(HBITMAP Bitmap);
+	ILAPI ILboolean ILAPIENTRY ilutSetHPal(HPALETTE Pal);
+	ILAPI ILboolean ILAPIENTRY ilutSetWinClipboard(void);
+	ILAPI HBITMAP ILAPIENTRY ilutWinLoadImage(ILstring FileName, HDC hDC);
+	ILAPI ILboolean ILAPIENTRY ilutWinLoadUrl(ILstring Url);
 	ILAPI ILboolean ILAPIENTRY ilutWinPrint(ILuint XPos, ILuint YPos, ILuint Width, ILuint Height, HDC hDC);
-	ILAPI ILboolean	ILAPIENTRY ilutWinSaveImage(ILstring FileName, HBITMAP Bitmap);
+	ILAPI ILboolean ILAPIENTRY ilutWinSaveImage(ILstring FileName, HBITMAP Bitmap);
 #endif//ILUT_USE_WIN32
 
-// ImageLib Utility Toolkit's DirectX 8 Functions
+
+	// ImageLib Utility Toolkit's DirectX 8 Functions
 #ifdef ILUT_USE_DIRECTX8
-//	ILAPI void	ILAPIENTRY ilutD3D8MipFunc(ILuint NumLevels);
+	//	ILAPI void	ILAPIENTRY ilutD3D8MipFunc(ILuint NumLevels);
 	ILAPI struct IDirect3DTexture8* ILAPIENTRY ilutD3D8Texture(struct IDirect3DDevice8 *Device);
 	ILAPI struct IDirect3DVolumeTexture8* ILAPIENTRY ilutD3D8VolumeTexture(struct IDirect3DDevice8 *Device);
 	ILAPI ILboolean	ILAPIENTRY ilutD3D8TexFromFile(struct IDirect3DDevice8 *Device, char *FileName, struct IDirect3DTexture8 **Texture);
@@ -329,10 +341,11 @@ ILAPI ILboolean     ILAPIENTRY ilutRenderer(ILenum Renderer);
 	ILAPI ILboolean ILAPIENTRY ilutD3D8LoadSurface(struct IDirect3DDevice8 *Device, struct IDirect3DSurface8 *Surface);
 #endif//ILUT_USE_DIRECTX8
 
+
 #ifdef ILUT_USE_DIRECTX9
 	#pragma warning(push)
 	#pragma warning(disable : 4115)  // Disables 'named type definition in parentheses' warning
-//	ILAPI void  ILAPIENTRY ilutD3D9MipFunc(ILuint NumLevels);
+	//	ILAPI void  ILAPIENTRY ilutD3D9MipFunc(ILuint NumLevels);
 	ILAPI struct IDirect3DTexture9*       ILAPIENTRY ilutD3D9Texture         (struct IDirect3DDevice9* Device);
 	ILAPI struct IDirect3DVolumeTexture9* ILAPIENTRY ilutD3D9VolumeTexture   (struct IDirect3DDevice9* Device);
     ILAPI struct IDirect3DCubeTexture9*       ILAPIENTRY ilutD3D9CubeTexture (struct IDirect3DDevice9* Device);
@@ -355,6 +368,7 @@ ILAPI ILboolean     ILAPIENTRY ilutRenderer(ILenum Renderer);
 	ILAPI ILboolean ILAPIENTRY ilutD3D9LoadSurface(struct IDirect3DDevice9 *Device, struct IDirect3DSurface9 *Surface);
 	#pragma warning(pop)
 #endif//ILUT_USE_DIRECTX9
+
 
 #ifdef ILUT_USE_DIRECTX10
 	ILAPI ID3D10Texture2D* ILAPIENTRY ilutD3D10Texture(ID3D10Device *Device);
@@ -379,7 +393,9 @@ ILAPI ILboolean     ILAPIENTRY ilutRenderer(ILenum Renderer);
 	ILAPI XImage * ILAPIENTRY ilutXShmLoadImage( Display*,char*,XShmSegmentInfo* );
 	ILAPI Pixmap ILAPIENTRY ilutXShmLoadPixmap( Display*,Drawable,char*,XShmSegmentInfo* );
 #endif//ILUT_USE_XSHM
+
 #endif//ILUT_USE_X11
+
 
 
 #ifdef __cplusplus
@@ -387,4 +403,7 @@ ILAPI ILboolean     ILAPIENTRY ilutRenderer(ILenum Renderer);
 #endif
 
 #endif // __ILUT_H__
+
 #endif // __ilut_h_
+
+
