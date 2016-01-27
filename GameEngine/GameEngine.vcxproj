@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClInclude Include="DevIL\ilut_config.h" />
     <ClInclude Include="DevIL\ilu_region.h" />
     <ClInclude Include="DevIL\il_wrap.h" />
+    <ClInclude Include="Game\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -86,7 +88,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Connor\Documents\Visual Studio 2015\Projects\GameEngine\packages\glm.0.9.7.1\build\native\include;C:\Users\Connor\Documents\Visual Studio 2015\Projects\GameEngine\packages\nupengl.core.0.1.0.1\build\native\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
