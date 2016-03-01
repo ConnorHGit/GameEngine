@@ -1,11 +1,10 @@
 #pragma once
 
-
-#pragma once
-
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
+
+#include<vector>
 #include <mutex>
 
 namespace Game
@@ -90,7 +89,7 @@ namespace Game
 			/*
 			Array holding information about state of keys on keyboard
 			*/
-
+			std::vector<Callback> callbacks;
 
 			Key keys[350];
 

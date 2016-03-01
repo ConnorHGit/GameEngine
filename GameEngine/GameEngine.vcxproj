@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\CameraManager.cpp" />
     <ClCompile Include="Game\InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="DevIL\ilut_config.h" />
     <ClInclude Include="DevIL\ilu_region.h" />
     <ClInclude Include="DevIL\il_wrap.h" />
+    <ClInclude Include="Game\CameraManager.h" />
     <ClInclude Include="Game\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
