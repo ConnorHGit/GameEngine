@@ -14,7 +14,7 @@ void Game::Input::InputManager::KeyHandler(GLFWwindow* window, int key, int scan
 		keys[key].state &= ~KeyReleased;//Sets KeyReleased to false
 		break;
 	case GLFW_RELEASE:
-		keys[key].state != KeyReleased; //Sets KeyReleased to true
+		keys[key].state |= KeyReleased; //Sets KeyReleased to true
 		keys[key].state &= ~(KeyPressed | KeyDown); //Sets KeyPressed and KeyDown to false
 		break;
 	}
